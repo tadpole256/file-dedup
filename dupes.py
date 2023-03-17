@@ -16,16 +16,25 @@ def find_duplicate_images(directory):
     image_hashes = {}
     duplicates = []
 
+    image_files = []
     for root, _, files in os.walk(directory):
         for file in files:
             if file.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp')):
-                file_path = os.path.join(root, file)
-                image_hash = hash_image(file_path)
+                image_files.append(os.path.join(root, file))
 
-                if image_hash in image_hashes:
-                    duplicates.append((file_path, image_hashes[image_hash]))
-                else:
-                    image_hashes[image_hash] = file_path
+    total_files = len(image_files)
+    processed_files = 0
+
+    for file_path in image_files:
+        processed_files += 1
+        print(f"Processing file {processed_files} of {total_files}")
+
+        image_hash = hash_image(file_path)
+
+        if image_hash in image_hashes:
+            duplicates.append((file_path, image_hashes[image_hash]))
+        else:
+            image_hashes[image_hash] = file_path
 
     return duplicates
 
@@ -38,6 +47,8 @@ def main():
     for duplicate_image, original_image in duplicate_images:
         print(f"Found duplicate: {duplicate_image} (Original: {original_image})")
         move(duplicate_image, os.path.join(directory, "dupes", os.path.basename(duplicate_image)))
+
+    print("Finished processing all files.")
 
 if __name__ == "__main__":
     main()
