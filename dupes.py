@@ -2,6 +2,7 @@ import os
 import hashlib
 from PIL import Image
 from shutil import move
+from tqdm import tqdm
 
 def create_directory_if_not_exists(directory):
     if not os.path.exists(directory):
@@ -22,13 +23,7 @@ def find_duplicate_images(directory):
             if file.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp')):
                 image_files.append(os.path.join(root, file))
 
-    total_files = len(image_files)
-    processed_files = 0
-
-    for file_path in image_files:
-        processed_files += 1
-        print(f"Processing file {processed_files} of {total_files}")
-
+    for file_path in tqdm(image_files, desc="Processing images"):
         image_hash = hash_image(file_path)
 
         if image_hash in image_hashes:
