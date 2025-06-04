@@ -31,9 +31,8 @@ This project provides a simple yet effective tool for identifying and managing d
 ## Requirements
 
 - Python 3.x
-- Pillow library
 - tqdm library
 
 You can install the required libraries using pip.
 
-This is an early version and I'm sure there's a lot of room for improvement. This is an open source project and I'm happy to accept any contributions. 
+This is an early version and I'm sure there's a lot of room for improvement. This is an open source project and I'm happy to accept any contributions.
