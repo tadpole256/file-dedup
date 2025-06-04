@@ -2,6 +2,7 @@ import os
 import hashlib
 from shutil import move
 from tqdm import tqdm
+from tkinter import Tk, filedialog
 
 def create_directory_if_not_exists(directory):
     if not os.path.exists(directory):
@@ -45,7 +46,14 @@ def move_with_unique_name(src, dest_dir):
     move(src, dest_path)
 
 def main():
-    directory = os.getcwd()
+    root = Tk()
+    root.withdraw()
+    directory = filedialog.askdirectory(title="Select directory to scan for duplicates")
+    root.destroy()
+    if not directory:
+        print("No directory selected. Exiting.")
+        return
+
     create_directory_if_not_exists(os.path.join(directory, "dupes"))
 
     duplicate_images = find_duplicate_images(directory)

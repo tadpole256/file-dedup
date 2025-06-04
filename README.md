@@ -10,6 +10,7 @@ This project provides a simple yet effective tool for identifying and managing d
 - Uses MD5 hashing to identify duplicate images
 - Moves duplicate files to a separate 'dupes' folder
 - Provides a progress bar for visual feedback during processing
+- Allows selecting the target directory through a GUI dialog
 
 ## How It Works
 
@@ -20,18 +21,19 @@ This project provides a simple yet effective tool for identifying and managing d
 
 ## Usage
 
-1. Place the script in the directory you want to scan.
-2. Run the script using Python:
+1. Run the script using Python:
    ```
    python dupes.py
    ```
-3. The script will process all images in the current directory and its subdirectories.
-4. Duplicate images will be moved to a 'dupes' folder within the current directory.
+2. When the GUI dialog appears, choose the directory you want to scan.
+3. The script will process all images in the chosen directory and its subdirectories.
+4. Duplicate images will be moved to a 'dupes' folder within the selected directory.
 
 ## Requirements
 
 - Python 3.x
 - tqdm library
+- tkinter (usually included with Python)
 
 You can install the required libraries using pip.
 
